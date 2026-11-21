@@ -35,4 +35,5 @@ Le armi si trovano nelle casse con la **W**. Se prendi un'arma che hai già, si 
 Recluta, Razziatore (veloce e debole), Corazzato (lento e fortissimo), Cecchino (mira laser), Drone kamikaze, Granatiere, Scudiero (para i colpi davanti: aggiralo o usa esplosivi/laser), Torretta, Spettro (ninja che si teletrasporta), Medico (cura gli altri: abbattilo per primo), Mastino cibernetico.
 
 ## Versioni
+- **1.1** (21/11/2026) — corretto il blocco delle zone (un nemico poteva restare fuori dallo schermo e impedire di andare avanti, es. livello 3); risoluzione interna limitata a 1920×1080 per restare fluido sugli schermi grandi; eventuali errori mostrati in basso sullo schermo.
 - **1.0** (21/11/2026) — prima versione completa: 6 livelli, 6 boss, 12 armi, 11 nemici, 4 difficoltà, musica e suoni sintetizzati, salvataggio record e livelli sbloccati, touch e gamepad.

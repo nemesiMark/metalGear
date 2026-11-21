@@ -1,13 +1,17 @@
 // ===== METAL GEAR — motore di gioco, schermate, HUD =====
 'use strict';
 const cv = document.getElementById('c'), ctx = cv.getContext('2d');
-let SCALE = 1, DPR = 1;
+let SCALE = 1, RS = 1;
 function resize() {
-  DPR = Math.min(2, window.devicePixelRatio || 1); SCALE = Math.min(innerWidth / W, innerHeight / H);
+  SCALE = Math.min(innerWidth / W, innerHeight / H);
+  // risoluzione interna limitata (max 1920x1080): sugli schermi grandi il gioco resta fluido
+  RS = Math.min(SCALE * Math.min(2, window.devicePixelRatio || 1), 2);
   cv.style.width = W * SCALE + 'px'; cv.style.height = H * SCALE + 'px';
-  cv.width = Math.round(W * SCALE * DPR); cv.height = Math.round(H * SCALE * DPR);
+  cv.width = Math.round(W * RS); cv.height = Math.round(H * RS);
 }
 addEventListener('resize', resize); resize();
+cv.addEventListener('contextlost', e => e.preventDefault());
+cv.addEventListener('contextrestored', () => resize());
 Input.init(cv);
 
 const G = {
@@ -265,7 +269,12 @@ function updatePlay(dt) {
     const T = ETYPES[e.type];
     if (e.para && e.z > 0) { e.z -= 90 * dt; e.x += Math.sin(G.t * 2 + e.id) * 20 * dt; if (e.z <= 0) { e.z = 0; e.para = false; } continue; }
     T.update(e, dt);
-    if (e.type !== 'gen') e.x = clamp(e.x, G.camX - 260, G.camX + W + 260);
+    if (e.type !== 'gen') {
+      // una volta entrato in scena, il nemico non può più uscire: altrimenti la zona resta bloccata
+      if (!e.entered && e.x > G.camX + 30 && e.x < G.camX + W - 30) e.entered = true;
+      if (e.entered) e.x = clamp(e.x, G.camX + 30, G.camX + W - 30);
+      else { e.x = clamp(e.x, G.camX - 260, G.camX + W + 260); e.offT = (e.offT || 0) + dt; if (e.offT > 4) e.x = lerp(e.x, G.camX + W / 2, dt * 2); }
+    }
   }
   for (let i = 0; i < G.enemies.length; i++) { const a = G.enemies[i]; if (ETYPES[a.type].flyer || a.type === 'turret') continue; for (let j = i + 1; j < G.enemies.length; j++) { const b = G.enemies[j]; if (ETYPES[b.type].flyer || b.type === 'turret') continue; const dx = b.x - a.x, dy = b.y - a.y; if (Math.abs(dx) < 30 && Math.abs(dy) < 16) { const s = (dx >= 0 ? 1 : -1) * (30 - Math.abs(dx)) * .25; a.x -= s; b.x += s; const t = (dy >= 0 ? 1 : -1) * 1; a.y = clamp(a.y - t, GT + 4, GB); b.y = clamp(b.y + t, GT + 4, GB); } } }
   G.enemies = G.enemies.filter(e => e.hp > 0);
@@ -436,7 +445,8 @@ function update(dt) {
 
 // ======================= RENDER =======================
 function render() {
-  ctx.setTransform(SCALE * DPR, 0, 0, SCALE * DPR, 0, 0);
+  ctx.setTransform(RS, 0, 0, RS, 0, 0);
+  ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1; ctx.shadowBlur = 0; ctx.lineCap = 'butt';
   ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H);
   G.rects = [];
   const st = G.state;
@@ -453,6 +463,7 @@ function render() {
   if (st === 'over') drawOver();
   if (st === 'play' && G.paused) drawPause();
   if (Input.isTouch && st === 'play' && !G.paused) drawTouch();
+  if (G.lastErr) { ctx.font = '11px monospace'; ctx.fillStyle = '#ff6b6b'; ctx.fillText('Errore: ' + G.lastErr.split('\n').slice(0, 2).join(' | ').slice(0, 150), 8, H - 6); }
 }
 function drawWorld() {
   const cam = G.camX, t = G.t, BGT = BG[G.L.theme];
@@ -780,7 +791,8 @@ function drawVictory() {
 let last = performance.now();
 function frame(now) {
   let dt = (now - last) / 1000; last = now; if (dt > .05) dt = .05;
-  try { update(dt); render(); } catch (err) { console.error(err); }
+  try { update(dt); } catch (err) { console.error(err); G.lastErr = String(err && err.stack || err); }
+  try { render(); } catch (err) { console.error(err); G.lastErr = String(err && err.stack || err); try { ctx.restore(); } catch (e) { } }
   Input.endFrame();
   requestAnimationFrame(frame);
 }
