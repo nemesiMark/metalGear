@@ -5,7 +5,8 @@ Un soldatino si muove avanti/indietro/su/giù in una fascia di terreno, salta, s
 6 livelli (5 con boss + finale con il mega boss OMEGA GEAR), 12 armi (anche combinate), 11 tipi di nemici, 4 difficoltà.
 
 ## Dove sta
-- Solo in locale: `~/Desktop/Apps/metalGear`. Non è (ancora) un repository git e non è online.
+- Cartella: `~/Desktop/Apps/metalGear`.
+- Repository: https://github.com/nemesiMark/metalGear (ramo `main`). Non è pubblicato come sito.
 
 ## Come si prova
 - Basta aprire `index.html` nel browser (funziona anche da file://, niente server).
@@ -24,8 +25,8 @@ Un soldatino si muove avanti/indietro/su/giù in una fascia di terreno, salta, s
 
 ## Regole di lavoro
 - Versioni e novità nel `LEGGIMI.md`.
-- Commit solo su richiesta (serve prima `git init` e un remoto).
-- «g» = commit e push (vedi istruzioni generali); oggi la cartella non è un repository.
+- Commit solo su richiesta.
+- «g» = commit e push su GitHub (prima: `node --check` su tutti i file in `js/`).
 - Dopo modifiche: `for f in js/*.js; do node --check $f; done` e una prova nel browser.
 
 ## In sospeso
