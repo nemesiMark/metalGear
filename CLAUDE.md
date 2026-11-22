@@ -6,7 +6,7 @@ Un soldatino si muove avanti/indietro/su/giù in una fascia di terreno, salta, s
 
 ## Dove sta
 - Cartella: `~/Desktop/Apps/metalGear`.
-- Repository: https://github.com/nemesiMark/metalGear (ramo `main`). Non è pubblicato come sito.
+- Repository: https://github.com/nemesiMark/metalGear (ramo `main`). Online con GitHub Pages: https://nemesimark.github.io/metalGear/
 
 ## Come si prova
 - Basta aprire `index.html` nel browser (funziona anche da file://, niente server).
@@ -14,14 +14,18 @@ Un soldatino si muove avanti/indietro/su/giù in una fascia di terreno, salta, s
 - In console del browser `G` è lo stato del gioco (utile per prove: `startRun(4)`, `G.player.inv = 999`).
 
 ## Struttura
-- `index.html` — pagina e caricamento degli script (in ordine).
+- `index.html` — pagina e caricamento degli script (in ordine: fonts, core, fx, backgrounds, weapons, enemies, bosses, levels, game).
+- `js/fonts.js` — caratteri incorporati in base64 (Black Ops One per i titoli, Teko per l'interfaccia; licenza SIL OFL).
 - `js/core.js` — costanti, salvataggi (localStorage `metalgear_*`), input (tastiera, mouse, touch, gamepad), audio sintetizzato e musiche.
-- `js/backgrounds.js` — paesaggi procedurali a parallasse (giungla, deserto, città, artico, vulcano, nucleo).
+- `js/fx.js` — motore grafico: colori (`tone`, `rgba`), sprite di bagliore/fuoco/fumo in cache, `FX` (luce ambiente dei livelli bui, bagliori additivi, vignettatura, grana), primitive "a inchiostro" (`ink`, `seg`, `circ`), `ease`.
+- `js/backgrounds.js` — paesaggi procedurali a parallasse (giungla, deserto, città, artico, vulcano, nucleo), con luci `FX.glow`/`FX.light`.
 - `js/weapons.js` — armi del giocatore (`WEAPONS`, ordine in `WORDER`).
-- `js/enemies.js` — nemici (`ETYPES`): comportamento e disegno.
+- `js/enemies.js` — nemici (`ETYPES`): comportamento e disegno (`drawSoldier` per i soldati).
 - `js/bosses.js` — boss (`BOSSES`) e mega boss `omega`.
 - `js/levels.js` — livelli (zone, ondate, casse con armi) e tabella difficoltà `DIFFS`.
-- `js/game.js` — ciclo di gioco, collisioni, HUD, menu e schermate.
+- `js/game.js` — ciclo di gioco e collisioni; la sezione `RENDER` (fino a `loop`) è solo grafica: `LOOK` (luce e colori per livello), HUD, menu e schermate.
+- Ogni fotogramma: `FX.begin` → disegno del mondo → `FX.compose` (luci + bagliori) → `FX.post` (tinta, vignettatura) → HUD.
+- La grafica sta solo nelle funzioni `draw`/`render`: modificandola non si tocca il comportamento del gioco.
 
 ## Regole di lavoro
 - Versioni e novità nel `LEGGIMI.md`.
@@ -30,5 +34,4 @@ Un soldatino si muove avanti/indietro/su/giù in una fascia di terreno, salta, s
 - Dopo modifiche: `for f in js/*.js; do node --check $f; done` e una prova nel browser.
 
 ## In sospeso
-- Nessuna pubblicazione online decisa.
-- "Metal Gear" è un marchio registrato Konami: se il gioco va pubblicato, va rinominato.
+- "Metal Gear" è un marchio registrato Konami e il gioco è online con questo nome (GitHub Pages): conviene rinominarlo.

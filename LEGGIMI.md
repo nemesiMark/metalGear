@@ -35,5 +35,12 @@ Le armi si trovano nelle casse con la **W**. Se prendi un'arma che hai già, si 
 Recluta, Razziatore (veloce e debole), Corazzato (lento e fortissimo), Cecchino (mira laser), Drone kamikaze, Granatiere, Scudiero (para i colpi davanti: aggiralo o usa esplosivi/laser), Torretta, Spettro (ninja che si teletrasporta), Medico (cura gli altri: abbattilo per primo), Mastino cibernetico.
 
 ## Versioni
+- **2.0** (22/11/2026) — grafica rifatta da capo; il gioco (comandi, armi, nemici, boss, difficoltà) è rimasto identico.
+  - Protagonista, nemici e boss ridisegnati: contorni a inchiostro, ombreggiature, animazioni più morbide (corsa, salto, rinculo, capelli e bandana al vento); i boss hanno cingoli che girano, zampe articolate, rotori, cristalli, colli di magma, scudo esagonale.
+  - Luci vere: spari, laser, razzi, esplosioni, lava, lampioni, insegne al neon e fulmini illuminano la scena; i livelli notturni sono bui e si accendono con le loro luci; bagliori morbidi su tutto ciò che brilla.
+  - Esplosioni con palla di fuoco, onda d'urto, fumo denso, scintille, detriti e bruciature a terra; lampi alla bocca delle armi, bossoli che rimbalzano, ombre morbide sotto tutti.
+  - Paesaggi più profondi: foschia sulle montagne, sole e luna che brillano, lucciole, braci, pioggia con lampi.
+  - Nuovo HUD (ritratto, barre a segmenti, arma con stelle, mappa del livello, barra del boss), menu, schermate e caratteri da videogioco (Black Ops One e Teko, inclusi nel gioco: funzionano anche senza internet).
+  - Scossa dello schermo più morbida, colori e vignettatura diversi per ogni livello; se il dispositivo fatica, la qualità si abbassa da sola per restare fluido.
 - **1.1** (21/11/2026) — corretto il blocco delle zone (un nemico poteva restare fuori dallo schermo e impedire di andare avanti, es. livello 3); risoluzione interna limitata a 1920×1080 per restare fluido sugli schermi grandi; eventuali errori mostrati in basso sullo schermo.
 - **1.0** (21/11/2026) — prima versione completa: 6 livelli, 6 boss, 12 armi, 11 nemici, 4 difficoltà, musica e suoni sintetizzati, salvataggio record e livelli sbloccati, touch e gamepad.
