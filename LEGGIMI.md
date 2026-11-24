@@ -35,6 +35,7 @@ Le armi si trovano nelle casse con la **W**. Se prendi un'arma che hai già, si 
 Recluta, Razziatore (veloce e debole), Corazzato (lento e fortissimo), Cecchino (mira laser), Drone kamikaze, Granatiere, Scudiero (para i colpi davanti: aggiralo o usa esplosivi/laser), Torretta, Spettro (ninja che si teletrasporta), Medico (cura gli altri: abbattilo per primo), Mastino cibernetico.
 
 ## Versioni
+- **2.2** (24/11/2026) — corretta l'installazione come app: nel manifest `"id": "./"` valeva la radice di nemesimark.github.io, uguale per tutte le app di Nemesi Web, e installare Radente prendeva il posto di Metal Gear. Ora `"id": "/metalGear/"`.
 - **2.1** (24/11/2026) — si installa come app (computer, iPhone, Android): icona, schermo intero in orizzontale, funziona anche senza rete (`sw.js`). Aperto con `?installa` (link «Installa» del portfolio Nemesi Web) mostra come installarlo (`installa.js`).
 - **2.0** (22/11/2026) — grafica rifatta da capo; il gioco (comandi, armi, nemici, boss, difficoltà) è rimasto identico.
   - Protagonista, nemici e boss ridisegnati: contorni a inchiostro, ombreggiature, animazioni più morbide (corsa, salto, rinculo, capelli e bandana al vento); i boss hanno cingoli che girano, zampe articolate, rotori, cristalli, colli di magma, scudo esagonale.
