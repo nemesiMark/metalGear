@@ -27,6 +27,11 @@ Un soldatino si muove avanti/indietro/su/giù in una fascia di terreno, salta, s
 - Ogni fotogramma: `FX.begin` → disegno del mondo → `FX.compose` (luci + bagliori) → `FX.post` (tinta, vignettatura) → HUD.
 - La grafica sta solo nelle funzioni `draw`/`render`: modificandola non si tocca il comportamento del gioco.
 
+
+## App installabile (PWA)
+- `manifest.webmanifest`, `sw.js` (copia dei file per l'uso senza rete; cache `nemesi-metalgear-N`: **alzare `VERSIONE` in `sw.js` e aggiornare `FILE` quando si aggiungono o rinominano file**), `icone/` (`icona.svg` → PNG 180/192/512 a tutto quadrato), `installa.js` (uguale nelle quattro app di Nemesi Web: registra `sw.js` e con `?installa` nell'indirizzo mostra il riquadro per installare).
+- Il portfolio Nemesi Web porta a `…/?installa` con il link «Installa».
+
 ## Regole di lavoro
 - Versioni e novità nel `LEGGIMI.md`.
 - Commit solo su richiesta.
