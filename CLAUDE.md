@@ -5,7 +5,7 @@ Un soldatino si muove avanti/indietro/su/giù in una fascia di terreno, salta, s
 6 livelli (5 con boss + finale con il mega boss OMEGA GEAR), 12 armi (anche combinate), 11 tipi di nemici, 4 difficoltà.
 
 ## Dove sta
-- Cartella: `~/Desktop/Apps/metalGear`.
+- Cartella: `~/Documents/work/Apps/metalGear`.
 - Repository: https://github.com/nemesiMark/metalGear (ramo `main`). Online con GitHub Pages: https://nemesimark.github.io/metalGear/
 
 ## Come si prova
